@@ -6,3 +6,26 @@
 	display: flex;
 	justify-content: center;
 }
+
+.form {
+	display: block;
+	width: 100%;
+}
+
+.form label, input, button {
+	display: block;
+}
+
+.form label, input {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.form label {
+	font-weight: bold;
+}
+
+.form button {
+	margin-left: auto;
+	margin-right: auto;
+}
