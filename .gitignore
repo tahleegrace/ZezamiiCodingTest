@@ -399,3 +399,4 @@ FodyWeavers.xsd
 .angular
 dist
 *.DS_Store
+/build
