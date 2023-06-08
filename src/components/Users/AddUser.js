@@ -24,7 +24,7 @@ const AddUser = () => {
 		setAge(preventDecimalsOrNegativesOnPaste(event.target.value));
 	};
 
-	// TODO: Replace the users list with context.
+	// If the users list is to be used across a larger application, I would use context or Redux to store it.
 	const [usersList, setUsersList] = useState([]);
 
 	const addUser = (event) => {

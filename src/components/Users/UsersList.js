@@ -11,7 +11,10 @@ const UsersList = (props) => {
 	return (
 		<Card className={classes.users}>
 			<ul>
-				{props.users.map(user => (<li key={user.id}>{user.username} ({getAgeText(user.age)} old)</li>))}
+				{props.users?.length > 0 ?
+				(
+					props.users.map(user => (<li key={user.id}>{user.username} ({getAgeText(user.age)} old)</li>))
+				) : <li>No users listed</li>}
 			</ul>
 		</Card>
 	);
