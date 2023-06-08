@@ -4,8 +4,7 @@ import Card from '../UI/Card';
 import Button from '../UI/Button';
 import classes from './AddUser.module.css';
 import UsersList from './UsersList';
-
-let usersList = [];
+import { cloneDeep } from "lodash";
 
 const AddUser = () => {
 	const [username, setUsername] = useState('');
@@ -20,15 +19,24 @@ const AddUser = () => {
 		setAge(event.target.value);
 	};
 
+	// TODO: Replace the users list with context.
+	const [usersList, setUsersList] = useState([]);
+
 	const addUser = (event) => {
 		event.preventDefault(); // Stop the screen from being refreshed.
 
 		const newUser = {
+			id: usersList.length + 1,
 			username: username,
-			age: Number(age)
+			age: Number(age),
 		};
 
-		usersList.push(newUser);
+		const newUsersList = cloneDeep(usersList);
+		newUsersList.push(newUser);
+
+		setUsersList(newUsersList);
+		setUsername('');
+		setAge('');
 	};
 
 	return (
