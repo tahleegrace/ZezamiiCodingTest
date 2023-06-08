@@ -5,6 +5,7 @@ import Button from '../UI/Button';
 import classes from './AddUser.module.css';
 import UsersList from './UsersList';
 import { cloneDeep } from "lodash";
+import { preventDecimalsOrNegativesInNumberFieldOnKeydown, preventDecimalsOrNegativesOnPaste } from '../Validation/ValidationHelpers';
 
 const AddUser = () => {
 	const [username, setUsername] = useState('');
@@ -15,8 +16,12 @@ const AddUser = () => {
 
 	const [age, setAge] = useState('');
 
+	const onAgeKeydown = (event) => {
+		preventDecimalsOrNegativesInNumberFieldOnKeydown(event);
+	};
+
 	const ageChanged = (event) => {
-		setAge(event.target.value);
+		setAge(preventDecimalsOrNegativesOnPaste(event.target.value));
 	};
 
 	// TODO: Replace the users list with context.
@@ -46,7 +51,7 @@ const AddUser = () => {
 					<label htmlFor="username">Username</label>
 					<input id="username" type="text" value={username} onChange={usernameChanged} required />
 					<label htmlFor="age">Age (Years)</label>
-					<input id="age" type="number" value={age} onChange={ageChanged} required />
+					<input id="age" type="number" value={age} onKeyDown={onAgeKeydown} onInput={ageChanged} required min="1" />
 					<Button type="submit">
 						Add User
 					</Button>
